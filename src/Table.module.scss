@@ -1,9 +1,12 @@
 .table {
   margin: 20px;
+  border-collapse: collapse;
   &Header {
   }
   &row {
   }
   &__col { 
+    border: 1px solid #000;
+    padding: 0 5px;
   }
 }

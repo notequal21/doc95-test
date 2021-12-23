@@ -4,10 +4,11 @@ import style from './Table.module.scss'
 
 function App() {
 
-  let usersList = users.map(u => <TableRow
-    key={u.id} id={u.id} fullName={u.Fullname} date={u.Days[0].Date} />)
-
-  console.log(users[0].Days[0].Date);
+  let usersList = users.map(user => {
+    return (
+      <TableRow key={user.id} id={user.id} fullName={user.Fullname} days={user.Days} />
+    )
+  })
 
   return (
     <table className={`${style.table}`}>
@@ -47,14 +48,44 @@ function App() {
         <th className={`${style.table__col}`}>Total</th>
       </tr>
       {usersList}
-    </table >
+    </table>
   );
 }
 
 let TableRow = (props) => {
+  let setDay = 0
+  let days = []
+  for (let index = 0; index < 31; index++) {
+    let currentDay = props.days[setDay]
+    if (currentDay != undefined) {
+      currentDay = Number(currentDay.Date.split('-')[2])
+    }
+    if (currentDay == ++index) {
+      const startTime = props.days[setDay].Start
+      const endTime = props.days[setDay].End
+      console.log(startTime, endTime);
+      days.push(currentDay)
+      setDay++
+      --index
+    } else {
+      days.push(0)
+      --index
+    }
+  }
+
   return (
     <tr className={`${style.tableRow}`}>
       <td className={`${style.table__col}`}>{props.fullName}</td>
+      {
+        days.map(item => <td className={`${style.table__col}`}>{item}</td>)
+      }
+      {/* {
+        props.days.map(day => {
+          return (
+            <td className={`${style.table__col}`}>{days}</td>
+          )
+        })
+      } */}
     </tr>
   )
 }
