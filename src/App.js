@@ -61,9 +61,12 @@ let TableRow = (props) => {
       currentDay = Number(currentDay.Date.split('-')[2])
     }
     if (currentDay == ++index) {
-      const startTime = props.days[setDay].Start
-      const endTime = props.days[setDay].End
-      console.log(startTime, endTime);
+      const startTime = props.days[setDay].Start.split('-')
+      const endTime = props.days[setDay].End.split('-')
+      const totalHours = Number(endTime[0]) - Number(startTime[0])
+      const totalMinutes = Number(endTime[1]) - Number(startTime[1])
+      const totalTime = 0
+      console.log(totalHours, totalMinutes);
       days.push(currentDay)
       setDay++
       --index
