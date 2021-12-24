@@ -55,6 +55,8 @@ function App() {
 let TableRow = (props) => {
   let setDay = 0
   let days = []
+  let totalTimeArr = []
+  let totalTime = 0
   for (let index = 0; index < 31; index++) {
     let currentDay = props.days[setDay]
     if (currentDay != undefined) {
@@ -65,8 +67,11 @@ let TableRow = (props) => {
       const endTime = props.days[setDay].End.split('-')
       const startTimeInMinutes = (Number(startTime[0]) * 60) + Number(startTime[1])
       const endTimeInMinutes = (Number(endTime[0]) * 60) + Number(endTime[1])
-      const totalTime = `${Math.floor((endTimeInMinutes - startTimeInMinutes) / 60)} Ч. ${(endTimeInMinutes - startTimeInMinutes) % 60} Мни.`
-      days.push(totalTime)
+      const totalDayTime = `${Math.floor((endTimeInMinutes - startTimeInMinutes) / 60)} Ч. ${(endTimeInMinutes - startTimeInMinutes) % 60} Мни.`
+      const totalMinutes = endTimeInMinutes - startTimeInMinutes
+      totalTimeArr.push(Number(totalMinutes))
+      totalTime = totalTimeArr.reduce((prev, next) => prev + next)
+      days.push(totalDayTime)
       setDay++
       --index
     } else {
@@ -81,6 +86,11 @@ let TableRow = (props) => {
       {
         days.map(item => <td className={`${style.table__col}`}>{item}</td>)
       }
+      <td className={`${style.table__col}`}>
+        {
+          `${Math.floor(totalTime / 60)} ч. ${totalTime % 60} мин.`
+        }
+      </td>
       {/* {
         props.days.map(day => {
           return (
