@@ -63,11 +63,10 @@ let TableRow = (props) => {
     if (currentDay == ++index) {
       const startTime = props.days[setDay].Start.split('-')
       const endTime = props.days[setDay].End.split('-')
-      const totalHours = Number(endTime[0]) - Number(startTime[0])
-      const totalMinutes = Number(endTime[1]) - Number(startTime[1])
-      const totalTime = 0
-      console.log(totalHours, totalMinutes);
-      days.push(currentDay)
+      const startTimeInMinutes = (Number(startTime[0]) * 60) + Number(startTime[1])
+      const endTimeInMinutes = (Number(endTime[0]) * 60) + Number(endTime[1])
+      const totalTime = `${Math.floor((endTimeInMinutes - startTimeInMinutes) / 60)} Ч. ${(endTimeInMinutes - startTimeInMinutes) % 60} Мни.`
+      days.push(totalTime)
       setDay++
       --index
     } else {
