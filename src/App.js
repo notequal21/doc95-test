@@ -11,44 +11,50 @@ function App() {
   })
 
   return (
-    <table className={`${style.table}`}>
-      <tr className={`${style.tableHeader}`}>
-        <th className={`${style.table__col}`}> User</th>
-        <th className={`${style.table__col}`}>1</th>
-        <th className={`${style.table__col}`}>2</th>
-        <th className={`${style.table__col}`}>3</th>
-        <th className={`${style.table__col}`}>4</th>
-        <th className={`${style.table__col}`}>5</th>
-        <th className={`${style.table__col}`}>6</th>
-        <th className={`${style.table__col}`}>7</th>
-        <th className={`${style.table__col}`}>8</th>
-        <th className={`${style.table__col}`}>9</th>
-        <th className={`${style.table__col}`}>10</th>
-        <th className={`${style.table__col}`}>11</th>
-        <th className={`${style.table__col}`}>12</th>
-        <th className={`${style.table__col}`}>13</th>
-        <th className={`${style.table__col}`}>14</th>
-        <th className={`${style.table__col}`}>15</th>
-        <th className={`${style.table__col}`}>16</th>
-        <th className={`${style.table__col}`}>17</th>
-        <th className={`${style.table__col}`}>18</th>
-        <th className={`${style.table__col}`}>19</th>
-        <th className={`${style.table__col}`}>20</th>
-        <th className={`${style.table__col}`}>21</th>
-        <th className={`${style.table__col}`}>22</th>
-        <th className={`${style.table__col}`}>23</th>
-        <th className={`${style.table__col}`}>24</th>
-        <th className={`${style.table__col}`}>25</th>
-        <th className={`${style.table__col}`}>26</th>
-        <th className={`${style.table__col}`}>27</th>
-        <th className={`${style.table__col}`}>28</th>
-        <th className={`${style.table__col}`}>29</th>
-        <th className={`${style.table__col}`}>30</th>
-        <th className={`${style.table__col}`}>31</th>
-        <th className={`${style.table__col}`}>Total</th>
-      </tr>
-      {usersList}
-    </table>
+    <>
+      <div className={`${style.table}`}>
+        <div className={`${style.tableRow}`}>
+          <div className={`${style.table__firstCol}`}>
+            User
+          </div>
+          <div className={`${style.table__col}`}>1</div>
+          <div className={`${style.table__col}`}>2</div>
+          <div className={`${style.table__col}`}>3</div>
+          <div className={`${style.table__col}`}>4</div>
+          <div className={`${style.table__col}`}>5</div>
+          <div className={`${style.table__col}`}>6</div>
+          <div className={`${style.table__col}`}>7</div>
+          <div className={`${style.table__col}`}>8</div>
+          <div className={`${style.table__col}`}>9</div>
+          <div className={`${style.table__col}`}>10</div>
+          <div className={`${style.table__col}`}>11</div>
+          <div className={`${style.table__col}`}>12</div>
+          <div className={`${style.table__col}`}>13</div>
+          <div className={`${style.table__col}`}>14</div>
+          <div className={`${style.table__col}`}>15</div>
+          <div className={`${style.table__col}`}>16</div>
+          <div className={`${style.table__col}`}>17</div>
+          <div className={`${style.table__col}`}>18</div>
+          <div className={`${style.table__col}`}>19</div>
+          <div className={`${style.table__col}`}>20</div>
+          <div className={`${style.table__col}`}>21</div>
+          <div className={`${style.table__col}`}>22</div>
+          <div className={`${style.table__col}`}>23</div>
+          <div className={`${style.table__col}`}>24</div>
+          <div className={`${style.table__col}`}>25</div>
+          <div className={`${style.table__col}`}>26</div>
+          <div className={`${style.table__col}`}>27</div>
+          <div className={`${style.table__col}`}>28</div>
+          <div className={`${style.table__col}`}>29</div>
+          <div className={`${style.table__col}`}>30</div>
+          <div className={`${style.table__col}`}>31</div>
+          <div className={`${style.table__lastCol}`}>
+            Total
+          </div>
+        </div>
+        {usersList}
+      </div>
+    </>
   );
 }
 
@@ -81,24 +87,19 @@ let TableRow = (props) => {
   }
 
   return (
-    <tr className={`${style.tableRow}`}>
-      <td className={`${style.table__col}`}>{props.fullName}</td>
+    <div className={`${style.tableRow}`}>
+      <div className={`${style.table__firstCol}`}>
+        {props.fullName}
+      </div>
       {
-        days.map(item => <td className={`${style.table__col}`}>{item}</td>)
+        days.map(item => <div className={`${style.table__col}`}>{item}</div>)
       }
-      <td className={`${style.table__col}`}>
+      <div className={`${style.table__lastCol}`}>
         {
           `${Math.floor(totalTime / 60)} ч. ${totalTime % 60} мин.`
         }
-      </td>
-      {/* {
-        props.days.map(day => {
-          return (
-            <td className={`${style.table__col}`}>{days}</td>
-          )
-        })
-      } */}
-    </tr>
+      </div>
+    </div>
   )
 }
 
